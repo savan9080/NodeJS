@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-complete-guide",
+  "name": "section7-mvc",
   "version": "1.0.0",
   "description": "Complete Node.js Guide",
   "main": "app.js",
@@ -19,6 +19,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "mysql2": "^2.2.5",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "sequelize": "^6.6.2"
   }
 }
