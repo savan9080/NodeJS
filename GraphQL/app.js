@@ -6,21 +6,19 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const { graphqlHTTP } = require("express-graphql");
 
-const { v4: uuidv4 } = require("uuid");
+const app = express();
 
+const { v4: uuidv4 } = require("uuid");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
 const auth = require("./middleware/auth");
-const { clearImage } = require("./util/file");
-
-const app = express();
 
 const fileStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "images");
   },
   filename: function (req, file, cb) {
-    cb(null, uuidv4() + ".jpg");
+    cb(null, file.originalname);
   },
 });
 
@@ -107,3 +105,8 @@ mongoose
     app.listen(8080);
   })
   .catch((err) => console.log(err));
+
+const clearImage = (filePath) => {
+  filePath = path.join(__dirname, "..", filePath);
+  fs.unlink(filePath, (err) => console.log(err));
+};
